@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>十个勤天 · 音乐动画</title>
+<link href="十个勤天音乐播放页面.css" rel="stylesheet">
+<style type="text/css" media="screen">
+    .title-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #move-img {
+        width: 200px;
+        transform: translate(0) rotateY(180deg);
+        transition: none;
+        border: 2px solid var(--shiqin-light-green);
+        border-radius: 8px;
+        box-shadow: var(--shadow-light);
+        display: block;
+        margin: 20px auto;
+        opacity: 0;
+        visibility: hidden;
+    }
+    #move-img.show {
+        opacity: 1;
+        visibility: visible;
+        animation: mymove 10s forwards ease-in-out, borderChange 10s forwards;
+    }
+    /* 音频加载中提示 */
+    .audio-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 10px;
+        z-index: 4;
+        display: none;
+    }
+    .vinyl-disc.loading .audio-loading {
+        display: block;
+    }
+</style>
+</head>
+<body>
+    <div class="watermark">十个勤天</div>
+    <div class="title-container">
+        <h2>🌾 十个勤天 · 音乐视频播放</h2>
+    </div>
+    
+    <!-- 视频区域 -->
+    <div class="video-grid">
+        <div class="video-row">
+            <div class="video-wrapper">
+                <video 
+                    class="hover-play-video" 
+                    poster="图片/sgqt1.jpg" 
+                    controls 
+                    width="640" 
+                    height="360"
+                    preload="none"
+                >
+                    <source src="图片/sgqt1.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频播放
+                </video>
+            </div>
+            <div class="video-wrapper">
+                <video 
+                    class="hover-play-video" 
+                    poster="图片/sgqt2.jpg" 
+                    controls 
+                    width="640" 
+                    height="360"
+                    preload="none"
+                >
+                    <source src="图片/sgqt3.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频播放
+                </video>
+            </div>
+        </div>
+        <div class="video-row">
+            <div class="video-wrapper">
+                <video 
+                    class="hover-play-video" 
+                    width="640" 
+                    controls 
+                    poster="图片/sgqt3.jpg"
+                    preload="none"
+                >
+                    <source src="图片/十个勤天1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-side-content">
+                <!-- 修改h3为h2 -->
+                <h2>月亮照山川</h2>
+                <p>1. 借月光洒落山川的唯美意境，歌颂高原大地的壮阔秀美。</p>
+                <p>2. 刻画山野少年心怀梦想、不惧前路坎坷，坚守初心、向阳成长的坚韧品格。</p>
+                <p>3. 作为新农人团体，本身自带踏实、热血、质朴、成长的标签，和歌曲少年逐梦、坚守初心的内核高度契合。</p>
+                <p>4. 声线干净青涩，不带华丽技巧，用最本真的演唱诠释山川少年的纯粹与勇敢。</p>
+                <img src="图片/月亮照山川.jpg" alt="月亮照山川" style="width:40%;border-radius:8px;margin-top:10px;border:1px solid rgba(46,83,57,0.1);">
+            </div>
+        </div>
+    </div>
+    
+    <!-- berry图片 -->
+    <div class="title-container">
+        <h2>🌾 十个勤天 · holdouberry动画</h2>
+        <img id="berry-img" class="berry-main-img" src="图片/berry1.jpg" alt="holdouberry">
+    </div>
+    
+    <!-- 底部动画图片 -->
+    <img id="move-img" src="图片/holdouberry.jpg" alt="holdouberry">
+    
+    <!-- 视频弹窗 -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <video class="modal-video" controls width="1280" height="720"></video>
+        </div>
+    </div>
+    
+    <!-- 全新唱片播放器区域 -->
+<div class="music-player-section">
+    <h2>🌾 十个勤天 · 黑胶唱片播放器</h2>
+    <div class="vinyl-player-list">
+        <!-- 第1个唱片（新增唱片中间图片） -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio1">
+                <div class="vinyl-texture"></div>
+                <!-- 唱片中间插入图片 -->
+                <div class="vinyl-label">
+                    <div class="label-text">蒋敦豪<br>我的轻舟是我自己</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <!-- 优化后的文字样式容器 -->
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">蒋敦豪</div>
+                <div class="vinyl-song">我的轻舟是我自己</div>
+                <div class="vinyl-tag">🌾 后陡门的夏天</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio1" preload="metadata">
+                <source src="音频/蒋敦豪 - 我的轻舟是我自己.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第2个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio2">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">鹭卓<br>LAST</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">鹭卓</div>
+                <div class="vinyl-song">LAST</div>
+                <div class="vinyl-tag">🌾 后陡门的夏天</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio2" preload="metadata">
+                <source src="音频/鹭卓 - LAST.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第3个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio3">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">李耕耘<br>慢慢即漫漫</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">李耕耘</div>
+                <div class="vinyl-song">慢慢即漫漫</div>
+                <div class="vinyl-tag">🌾 后陡门的夏天</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio3" preload="metadata">
+                <source src="音频/李耕耘 - 慢慢即漫漫.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第4个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio4">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">李昊<br>你离开了我的夏天</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">李昊</div>
+                <div class="vinyl-song">你离开了我的夏天</div>
+                <div class="vinyl-tag">🌾 后陡门的夏天</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio4" preload="metadata">
+                <source src="音频/李昊 - 你离开了我的夏天.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第5个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio5">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">赵一博<br>稻海</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">赵一博</div>
+                <div class="vinyl-song">稻海</div>
+                <div class="vinyl-tag">🌾 后陡门的夏天</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio5" preload="metadata">
+                <source src="音频/赵一博 - 稻海.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+    </div>
+</div>
+
+<!-- 第2组唱片（6-10） -->
+<div class="music-player-section">
+    <div class="vinyl-player-list">
+        <!-- 第6个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio6">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">卓沅<br>RING RING RING</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">卓沅</div>
+                <div class="vinyl-song">RING RING RING</div>
+                <div class="vinyl-tag">🌾 后陡门的夏天</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio6" preload="metadata">
+                <source src="音频/卓沅 - RING RING RING.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第7个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio7">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">赵小童<br>有没有一首歌会让你想起我</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">赵小童</div>
+                <div class="vinyl-song">有没有一首歌会让你想起我</div>
+                <div class="vinyl-tag">🌾 后陡门的夏天</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio7" preload="metadata">
+                <source src="音频/赵小童 - 有没有一首歌会让你想起我.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第8个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio8">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">何浩楠<br>全世界就你不知道</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">何浩楠</div>
+                <div class="vinyl-song">全世界就你不知道</div>
+                <div class="vinyl-tag">🌾 后陡门的夏天</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio8" preload="metadata">
+                <source src="音频/何浩楠 - 全世界就你不知道.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第9个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio9">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">陈少熙<br>思念难捱如晚风侵袭</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">陈少熙</div>
+                <div class="vinyl-song">思念难捱如晚风侵袭</div>
+                <div class="vinyl-tag">🌾 后陡门的夏天</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio9" preload="metadata">
+                <source src="音频/陈少熙 - 思念难捱如晚风侵袭.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第10个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio10">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">王一珩<br>一抹红</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">王一珩</div>
+                <div class="vinyl-song">一抹红</div>
+                <div class="vinyl-tag">🌾 后陡门的夏天</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio10" preload="metadata">
+                <source src="音频/王一珩OneSD - 一抹红.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+    </div>
+</div>
+
+<!-- 第3组唱片（11-15） -->
+<div class="music-player-section">
+    <div class="vinyl-player-list">
+        <!-- 第11个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio11">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">十个勤天<br>后陡门的夏</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">十个勤天</div>
+                <div class="vinyl-song">后陡门的夏</div>
+                <div class="vinyl-tag">🌾 新农人 · 共成长</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio11" preload="metadata">
+                <source src="音频/十个勤天 - 后陡门的夏.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第12个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio12">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">十个勤天<br>麦芒</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">十个勤天</div>
+                <div class="vinyl-song">麦芒</div>
+                <div class="vinyl-tag">🌾 新农人 · 共成长</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio12" preload="metadata">
+                <source src="音频/十个勤天 - 麦芒.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第13个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio13">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">十个勤天<br>我成为我的同时</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">十个勤天</div>
+                <div class="vinyl-song">我成为我的同时</div>
+                <div class="vinyl-tag">🌾 新农人 · 共成长</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio13" preload="metadata">
+                <source src="音频/十个勤天 - 我成为我的同时.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第14个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio14">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">十个勤天<br>We Higher</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">十个勤天</div>
+                <div class="vinyl-song">We Higher</div>
+                <div class="vinyl-tag">🌾 新农人 · 共成长</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio14" preload="metadata">
+                <source src="音频/十个勤天 - We Higher.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+        <!-- 第15个唱片 -->
+        <div class="vinyl-player">
+            <div class="vinyl-disc" data-audio-id="audio15">
+                <div class="vinyl-texture"></div>
+                <div class="vinyl-label">
+                    <div class="label-text">十个勤天<br>起舞吧</div>
+                </div>
+                <div class="audio-loading">加载中...</div>
+            </div>
+            <div class="vinyl-info sgqt-info">
+                <div class="vinyl-singer">十个勤天</div>
+                <div class="vinyl-song">起舞吧</div>
+                <div class="vinyl-tag">🌾 新农人 · 共成长</div>
+            </div>
+            <audio controls class="vinyl-audio" id="audio15" preload="metadata">
+                <source src="音频/十个勤天 - 起舞吧.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+    </div>
+</div>
+    <script>
+        // 基础元素获取
+        const videoElements = document.querySelectorAll('.hover-play-video');
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.querySelector('.modal-video');
+        const closeBtn = document.querySelector('.close-btn');
+        const moveImg = document.getElementById('move-img');
+        const berryImg = document.getElementById('berry-img');
+        const vinylDiscs = document.querySelectorAll('.vinyl-disc');
+        const audioElements = document.querySelectorAll('.vinyl-audio');
+
+        // 状态管理
+        let isBerryFirstClick = true;
+        let currentPlayingAudio = null; // 当前播放的音频实例
+        const audioLoadingStates = new Map(); // 音频加载状态
+
+        // 视频相关逻辑
+        function pauseOtherVideos(playingVideo) {
+            videoElements.forEach(video => {
+                if (video !== playingVideo && !video.paused) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
+        }
+
+        window.addEventListener('load', () => {
+            videoElements.forEach(video => {
+                video.pause();
+                video.currentTime = 0;
+            });
+            // 预加载音频元数据（不加载完整音频，避免卡顿）
+            audioElements.forEach(audio => {
+                audioLoadingStates.set(audio.id, false);
+                audio.addEventListener('loadedmetadata', () => {
+                    audioLoadingStates.set(audio.id, false);
+                    audio.closest('.vinyl-player').querySelector('.vinyl-disc').classList.remove('loading');
+                });
+                audio.addEventListener('waiting', () => {
+                    audioLoadingStates.set(audio.id, true);
+                    audio.closest('.vinyl-player').querySelector('.vinyl-disc').classList.add('loading');
+                });
+                audio.addEventListener('canplay', () => {
+                    audioLoadingStates.set(audio.id, false);
+                    audio.closest('.vinyl-player').querySelector('.vinyl-disc').classList.remove('loading');
+                });
+            });
+        });
+
+        videoElements.forEach((video, index) => {
+            if (index < 2) {
+                video.addEventListener('mouseenter', () => {
+                    pauseOtherVideos(video);
+                    video.play().catch(err => {});
+                });
+                video.addEventListener('mouseleave', () => {
+                    video.pause();
+                    video.currentTime = 0;
+                });
+            }
+
+            video.addEventListener('play', () => {
+                pauseOtherVideos(video);
+            });
+
+            video.addEventListener('click', (e) => {
+                if (!e.target.closest('video::-webkit-media-controls') && !e.target.closest('video::media-controls')) {
+                    if (video.paused) {
+                        pauseOtherVideos(video);
+                        video.play().catch(err => {});
+                    } else {
+                        video.pause();
+                    }
+                }
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            modalVideo.pause();
+            modalVideo.src = '';
+        });
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                modalVideo.pause();
+                modalVideo.src = '';
+            }
+        });
+
+        // 底部图片动画
+        berryImg.addEventListener('click', () => {
+            if (isBerryFirstClick) {
+                moveImg.classList.add('show');
+                isBerryFirstClick = false;
+            } else {
+                resetMoveImgAnimation();
+            }
+        });
+
+        moveImg.addEventListener('click', resetMoveImgAnimation);
+
+        function resetMoveImgAnimation() {
+            moveImg.classList.remove('show');
+            void moveImg.offsetWidth;
+            moveImg.classList.add('show');
+        }
+
+        // ======================
+        // 全新唱片播放器逻辑（解决卡顿）
+        // ======================
+        
+        // 暂停所有音频
+        function pauseAllAudios() {
+            if (currentPlayingAudio) {
+                currentPlayingAudio.pause();
+                const disc = document.querySelector(`.vinyl-disc[data-audio-id="${currentPlayingAudio.id}"]`);
+                if (disc) disc.classList.remove('playing');
+                currentPlayingAudio = null;
+            }
+        }
+
+        // 播放指定音频
+        async function playTargetAudio(audioId) {
+            // 暂停当前播放的音频
+            pauseAllAudios();
+            
+            const audio = document.getElementById(audioId);
+            const disc = document.querySelector(`.vinyl-disc[data-audio-id="${audioId}"]`);
+            
+            // 标记加载状态
+            disc.classList.add('loading');
+            audioLoadingStates.set(audioId, true);
+
+            try {
+                // 等待音频可播放
+                await audio.play();
+                currentPlayingAudio = audio;
+                disc.classList.remove('loading');
+                disc.classList.add('playing');
+                audioLoadingStates.set(audioId, false);
+            } catch (err) {
+                console.error('播放失败:', err);
+                disc.classList.remove('loading');
+                audioLoadingStates.set(audioId, false);
+            }
+        }
+
+        // 唱片点击事件
+        vinylDiscs.forEach(disc => {
+            disc.addEventListener('click', () => {
+                const audioId = disc.getAttribute('data-audio-id');
+                const audio = document.getElementById(audioId);
+
+                // 加载中不响应点击
+                if (audioLoadingStates.get(audioId)) return;
+
+                // 当前音频正在播放 → 暂停
+                if (currentPlayingAudio === audio && !audio.paused) {
+                    audio.pause();
+                    disc.classList.remove('playing');
+                    currentPlayingAudio = null;
+                } else {
+                    // 播放选中音频
+                    playTargetAudio(audioId);
+                }
+            });
+        });
+
+        // 音频控件同步（仅监听状态，不重复播放）
+        audioElements.forEach(audio => {
+            // 播放事件（原生控件）
+            audio.addEventListener('play', () => {
+                if (currentPlayingAudio !== audio) {
+                    pauseAllAudios();
+                    currentPlayingAudio = audio;
+                    const disc = document.querySelector(`.vinyl-disc[data-audio-id="${audio.id}"]`);
+                    disc.classList.remove('loading');
+                    disc.classList.add('playing');
+                }
+            });
+
+            // 暂停事件（原生控件）
+            audio.addEventListener('pause', () => {
+                if (currentPlayingAudio === audio) {
+                    const disc = document.querySelector(`.vinyl-disc[data-audio-id="${audio.id}"]`);
+                    disc.classList.remove('playing');
+                    currentPlayingAudio = null;
+                }
+            });
+
+            // 播放结束
+            audio.addEventListener('ended', () => {
+                const disc = document.querySelector(`.vinyl-disc[data-audio-id="${audio.id}"]`);
+                disc.classList.remove('playing');
+                currentPlayingAudio = null;
+            });
+
+            // 错误处理
+            audio.addEventListener('error', (e) => {
+                console.error('音频错误:', audio.id, e);
+                const disc = document.querySelector(`.vinyl-disc[data-audio-id="${audio.id}"]`);
+                disc.classList.remove('loading', 'playing');
+                audioLoadingStates.set(audio.id, false);
+            });
+        });
+    </script>
+</body>
+</html>
