@@ -1,0 +1,540 @@
+@charset "UTF-8";
+/* 十个勤天 · 专属主题变量 */
+:root {
+  --shiqin-main: #D4AF37;        /* 麦穗金 · 主色 */
+  --shiqin-green: #2E5339;       /* 稻田绿 · 稳重 */
+  --shiqin-light-green: #E6F0E9; /* 浅禾苗绿 */
+  --shiqin-earth: #F6F3ED;       /* 土地米色 */
+  --shiqin-text: #2A2A2A;
+  --shadow-light: 0 2px 10px rgba(0,0,0,0.06);
+  --shadow-normal: 0 4px 14px rgba(0,0,0,0.1);
+  --radius: 14px;
+  --transition: 0.32s ease;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #f9f5f0;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--shiqin-text);
+  padding: 20px 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' opacity='0.04' fill='%232E5339'><path d='M20,80 Q50,20 80,80' stroke='%232E5339' fill='none' stroke-width='2'/></svg>");
+}
+/* 视频网格容器 */
+.video-grid {
+  max-width: 1400px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+}
+/* 视频行 */
+.video-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.video-row::-webkit-scrollbar {
+  display: none;
+}
+/* 视频卡片（十个勤天质感） */
+.video-wrapper {
+  flex: 0 0 640px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 12px;
+  box-shadow: var(--shadow-light);
+  border: 1px solid rgba(46, 83, 57, 0.08);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.video-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--shiqin-green), var(--shiqin-main));
+}
+.video-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-normal);
+}
+/* 视频样式 */
+.hover-play-video {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 4px);
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.hover-play-video:hover {
+  border-color: var(--shiqin-main);
+}
+/* 放大按钮（十个勤天麦穗金） */
+.video-expand-btn {
+  padding: 9px 18px;
+  background-color: var(--shiqin-main);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+.video-expand-btn:hover {
+  background-color: #B89020;
+  transform: translateY(-1px);
+}
+/* 弹窗（后陡门质感） */
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(20, 30, 20, 0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  background-color: #fff;
+  border-radius: var(--radius);
+  padding: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+}
+.close-btn {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  color: #fff;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.close-btn:hover {
+  color: var(--shiqin-main);
+}
+.modal-video {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  border-radius: 10px;
+  object-fit: cover;
+}
+/* 第三个视频右侧内容（十个勤天主题卡片） */
+.video-side-content {
+  flex: 0 0 640px;
+  height: 400px;
+  padding: 26px;
+  background-color: var(--shiqin-light-green);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid rgba(46, 83, 57, 0.1);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.video-side-content::before {
+  content: "🌾 十个勤天 · 后陡门";
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 12px;
+  color: rgba(46, 83, 57, 0.4);
+  letter-spacing: 1px;
+}
+.video-side-content:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-normal);
+}
+/* 修改h3为h2的样式适配 */
+.video-side-content h2 {
+  color: var(--shiqin-green);
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(46, 83, 57, 0.15);
+}
+.video-side-content p {
+  color: #333;
+  line-height: 1.75;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+/* 响应式 */
+@media (max-width: 768px) {
+  .video-row {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .video-wrapper,
+  .video-side-content {
+    flex: 0 0 100%;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .close-btn {
+    top: -40px;
+    font-size: 28px;
+  }
+}
+/* 月亮照山川 水印背景（铺满+透明水印效果） */
+.moon-bg {
+  width: 100%;
+  flex: 1;
+  margin-top: 10px;
+  border-radius: 8px;
+  background-image: url("图片/月亮照山川.jpg");
+  background-size: 200px;
+  background-repeat: repeat;
+  background-position: center;
+  opacity: 0.15;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-blend-mode: lighten;
+}
+/* 左上角水印 */
+.watermark {
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    font-size: 24px;
+    color: rgba(94, 45, 0, 0.3);
+    font-weight: 700;
+    z-index: 999;
+    pointer-events: none;
+    letter-spacing: 2px;
+}
+
+/* --------------------------
+底部图片动画：先左 → 再右 → 不超屏
+--------------------------- */
+#move-img {
+  width: 200px;
+  transform: translate(0) rotateY(180deg);
+  transition: none;
+  border: 2px solid var(--shiqin-light-green);
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+  display: block;
+  margin: 20px auto;
+}
+#move-img.animate {
+  animation: mymove 10s forwards ease-in-out;
+}
+@keyframes mymove {
+  0%   { transform: translate(0) rotateY(180deg); }
+  25%  { transform: translate(calc(-50vw + 120px)) rotateY(180deg); }
+  75%  { transform: translate(calc(50vw - 120px)) rotateY(180deg); }
+  100% { transform: translate(0) rotateY(0deg); }
+}
+/* holdouberry 主图自适应样式 */
+.berry-main-img {
+    max-width: 90vw;
+    height: auto;
+    max-height: 80vh;
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 8px;
+    border: 2px solid var(--shiqin-light-green);
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease;
+}
+.berry-main-img:hover {
+    transform: scale(1.02);
+}
+@media (max-width: 768px) {
+    .berry-main-img {
+        max-width: 95vw;
+        max-height: 60vh;
+    }
+}
+@media (max-width: 480px) {
+    .berry-main-img {
+        max-height: 50vh;
+    }
+}
+
+/* ====================== */
+/* 全新唱片样式（黑胶质感） */
+/* ====================== */
+.music-player-section {
+    max-width: 1200px;
+    margin: 60px auto 30px;
+    padding: 0 20px;
+}
+/* 修改h3为h2的样式适配 */
+.music-player-section h2 {
+    color: var(--shiqin-green);
+    margin-bottom: 28px;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+}
+.vinyl-player-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+}
+.vinyl-player {
+    width: calc(20% - 19.2px);
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+/* 新黑胶唱片样式 */
+.vinyl-disc {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    background: #1a1a1a; /* 纯黑底色 */
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    transition: var(--transition);
+    cursor: pointer;
+    overflow: hidden;
+    /* 硬件加速 */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+/* 唱片金色边缘 */
+.vinyl-disc::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    border: 4px solid var(--shiqin-main);
+    z-index: 1;
+}
+/* 唱片中心轴 */
+.vinyl-disc::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f8f8f8 0%, #e0e0e0 100%);
+    z-index: 5;
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.2);
+}
+/* 黑胶纹理 */
+.vinyl-disc .vinyl-texture {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border-radius: 50%;
+    background: repeating-radial-gradient(
+        circle at center,
+        transparent 0px,
+        transparent 1px,
+        rgba(255,255,255,0.03) 1px,
+        rgba(255,255,255,0.03) 2px
+    );
+    z-index: 2;
+}
+/* 唱片标签（十个勤天主题）- 重构 */
+.vinyl-disc .vinyl-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--shiqin-green), var(--shiqin-main));
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0; /* 隐藏默认文字，改用label-text */
+    text-align: center;
+    font-weight: 600;
+    overflow: hidden;
+}
+/* 唱片中间图片样式 */
+.vinyl-label .label-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    opacity: 0.9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+/* 唱片标签文字 */
+.vinyl-label .label-text {
+    position: relative;
+    z-index: 4;
+    font-size: 8px;
+    background: rgba(46, 83, 57, 0.6);
+    padding: 2px 4px;
+    border-radius: 4px;
+    backdrop-filter: blur(1px);
+}
+/* 旋转动画（优化帧率） */
+.vinyl-disc.playing {
+    animation: vinyl-rotate 10s linear infinite;
+    animation-play-state: running;
+}
+/* 暂停状态 */
+.vinyl-disc.paused {
+    animation-play-state: paused;
+}
+@keyframes vinyl-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* 悬浮效果 */
+.vinyl-disc:hover {
+    transform: scale(1.05) translateZ(0);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+/* 音频控件样式优化 */
+.vinyl-audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid var(--shiqin-light-green);
+}
+.vinyl-audio::-webkit-media-controls-panel {
+    background-color: var(--shiqin-light-green);
+    border-radius: 8px;
+}
+.vinyl-audio::-webkit-media-controls-play-button {
+    background-color: var(--shiqin-main);
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+/* ====================== */
+/* 十个勤天专属文字样式 */
+/* ====================== */
+.sgqt-info {
+    width: 100%;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, var(--shiqin-light-green), #fff);
+    border-radius: 8px;
+    border: 1px solid rgba(46, 83, 57, 0.15);
+    text-align: center;
+    box-shadow: var(--shadow-light);
+}
+.sgqt-info .vinyl-singer {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--shiqin-green);
+    margin-bottom: 4px;
+    position: relative;
+    padding-bottom: 4px;
+}
+.sgqt-info .vinyl-singer::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 1px;
+    background-color: var(--shiqin-main);
+}
+.sgqt-info .vinyl-song {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+}
+.sgqt-info .vinyl-tag {
+    font-size: 10px;
+    color: var(--shiqin-main);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+    .vinyl-player {
+        width: calc(25% - 18px);
+    }
+}
+@media (max-width: 768px) {
+    .vinyl-player {
+        width: calc(33.33% - 16px);
+    }
+    .sgqt-info .vinyl-singer {
+        font-size: 13px;
+    }
+    .sgqt-info .vinyl-song {
+        font-size: 11px;
+    }
+}
+@media (max-width: 480px) {
+    .vinyl-player {
+        width: calc(50% - 12px);
+    }
+    .vinyl-disc {
+        width: 100px;
+        height: 100px;
+    }
+    .vinyl-disc .vinyl-label {
+        width: 35px;
+        height: 35px;
+    }
+    .vinyl-label .label-text {
+        font-size: 7px;
+    }
+    .sgqt-info {
+        padding: 6px 8px;
+    }
+    .sgqt-info .vinyl-singer {
+        font-size: 12px;
+    }
+    .sgqt-info .vinyl-song {
+        font-size: 10px;
+    }
+    .sgqt-info .vinyl-tag {
+        font-size: 9px;
+    }
+}
