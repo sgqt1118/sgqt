@@ -1,0 +1,475 @@
+@charset "UTF-8";
+/**
+ * 十个勤天网页样式
+ * @date    2026-04-07
+ * @version 2.0
+ */
+* {
+    list-style: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 全局样式 */
+body {
+    font-family: "微软雅黑", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    color: #333;
+    background-color: #f9f5f0;
+    position: relative;
+    padding: 0 20px;
+    line-height: 1.6;
+}
+
+/* 全屏背景水印 */
+.full-watermark {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("https://tse4-mm.cn.bing.net/th/id/OIP-C.4lIhfZaB10LvLT6K9m-iNAHaFI");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.08;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* 左上角水印 */
+.watermark {
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    font-size: 24px;
+    color: rgba(94, 45, 0, 0.3);
+    font-weight: 700;
+    z-index: 999;
+    pointer-events: none;
+    letter-spacing: 2px;
+}
+
+/* 头部标题 */
+.page-header {
+    text-align: center;
+    padding: 60px 0 30px;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 42px;
+    color: #5E2D00;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #8B6E4E;
+    font-style: italic;
+}
+
+/* 简介区域 */
+.intro-section {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.box1 {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+    border: 1px solid #FF5722;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 0 15px;
+    font-size: 18px;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.intro-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+    padding: 0 10px;
+}
+
+/* 导航栏 */
+.nav-main {
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.nav-item {
+    display: inline-block;
+    font-size: 18px;
+    color: #5E2D00;
+    padding: 8px 18px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.nav-item:hover {
+    background-color: #5E2D00;
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(94, 45, 0, 0.2);
+}
+
+/* 成员详情区域 */
+.members-section {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+}
+
+.member-card {
+    display: none;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.member-card:target {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.member-img {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.member-img img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #F9E4C8;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.member-img img:hover {
+    transform: scale(1.05);
+}
+
+.member-card dd {
+    line-height: 1.8;
+    font-size: 16px;
+    color: #444;
+    padding: 8px 0;
+    border-bottom: 1px dashed #F0E6DC;
+}
+
+.member-card dd:last-child {
+    border-bottom: none;
+}
+
+.member-card dd:nth-child(odd) {
+    color: #BDA793;
+}
+
+.member-card dd em {
+    font-weight: 600;
+    font-style: normal;
+}
+
+.member-card dd:nth-child(2) em {
+    color: #E63946;
+}
+
+.member-card dd:nth-child(3) em {
+    color: #5E2D00;
+}
+
+/* 百度百科链接区域 */
+.wiki-section {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.wiki-section h2 {
+    font-size: 28px;
+    color: #5E2D00;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.wiki-card {
+    background: linear-gradient(135deg, #F9D342, #A3E635, #F97316);
+    border-radius: 50%;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wiki-list {
+    width: 320px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.wiki-header {
+    height: 180px;
+    background: #fff url(https://gd-hbimg.huaban.com/d3cfd29095bbef89328bb41e55d071a2aa5d3d493755c-9U6WBA_fw240webp) no-repeat center;
+    background-size: 160px;
+}
+
+.wiki-list li {
+    height: 50px;
+    line-height: 50px;
+    background-color: #504d58;
+    margin-bottom: 1px;
+}
+
+.wiki-list li a {
+    display: block;
+    color: #d6d6d6;
+    font-size: 17px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.wiki-list li a:hover {
+    background-color: #5E2D00;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.wiki-footer {
+    border-radius: 0 0 30px 30px;
+    overflow: hidden;
+}
+
+/* 页脚 */
+.page-footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #8B6E4E;
+    font-size: 14px;
+    border-top: 1px solid #E8D9C5;
+    margin-top: 50px;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 视频容器：强制同一行显示（核心调整） */
+.video-container {
+    max-width: 1400px;
+    margin: 0 auto 50px;
+    display: flex;
+    flex-wrap: nowrap; /* 强制不换行，保证同一行 */
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0 20px;
+    overflow-x: auto; /* 超出时横向滚动 */
+    scrollbar-width: none; /* 隐藏滚动条（美观） */
+}
+
+/* 隐藏Chrome滚动条 */
+.video-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* 视频包裹层：统一尺寸 */
+.video-wrapper {
+    flex: 0 0 640px; /* 固定宽度，不缩放，保证尺寸统一 */
+    height: 400px; /* 固定高度（视频360+按钮40） */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 视频样式：统一尺寸 + 悬浮效果 */
+.hover-play-video {
+    width: 100%;
+    height: 360px; /* 固定高度，和HTML中width/height匹配 */
+    object-fit: cover; /* 保证视频比例，避免拉伸 */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hover-play-video:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+/* 放大按钮样式 */
+.video-expand-btn {
+    padding: 8px 16px;
+    background-color: #5E2D00;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.video-expand-btn:hover {
+    background-color: #8B4513;
+    transform: translateY(-2px);
+}
+
+/* 视频放大弹窗样式 */
+.video-modal {
+    display: none; /* 初始隐藏 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.85);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #ff4444;
+}
+
+.modal-video {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* 响应式适配（小屏幕仍保证视频尺寸统一，允许换行） */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 32px;
+    }
+    
+    .nav-main {
+        gap: 8px;
+    }
+    
+    .nav-item {
+        font-size: 16px;
+        padding: 6px 14px;
+    }
+    
+    .wiki-card {
+        width: 350px;
+        height: 350px;
+        padding: 20px;
+    }
+    
+    .wiki-list {
+        width: 280px;
+    }
+    
+    .member-img img {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* 小屏幕下视频容器允许换行，保证显示完整 */
+    .video-container {
+        flex-wrap: wrap;
+    }
+    .video-wrapper {
+        flex: 0 0 100%; /* 小屏幕占满宽度 */
+        max-width: 640px; /* 仍限制最大宽度，保证尺寸统一 */
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .watermark {
+        font-size: 20px;
+    }
+    
+    .page-header {
+        padding: 40px 0 20px;
+    }
+    
+    .intro-section {
+        padding: 15px;
+    }
+    
+    .member-card {
+        padding: 20px;
+    }
+    
+    .wiki-card {
+        width: 300px;
+        height: 300px;
+    }
+
+    .modal-content {
+        padding: 5px;
+    }
+    .close-btn {
+        top: -35px;
+        font-size: 25px;
+    }
+}
